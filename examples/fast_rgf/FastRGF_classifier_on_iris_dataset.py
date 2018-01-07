@@ -1,15 +1,20 @@
 import time
 
+import numpy
 from sklearn import datasets
-from sklearn.utils.validation import check_random_state
 from sklearn.ensemble import GradientBoostingClassifier
 from rgf.sklearn import RGFClassifier, FastRGFClassifier
 
 iris = datasets.load_iris()
-rng = check_random_state(0)
-perm = rng.permutation(iris.target.size)
-iris.data = iris.data[perm]
-iris.target = iris.target[perm]
+iris.data = numpy.vstack((iris.data, iris.data, iris.data, iris.data, iris.data))
+iris.data = numpy.vstack((iris.data, iris.data, iris.data, iris.data, iris.data))
+iris.data = numpy.vstack((iris.data, iris.data, iris.data, iris.data, iris.data))
+iris.data = numpy.vstack((iris.data, iris.data, iris.data, iris.data, iris.data))
+print('data shape ' + str(iris.data.shape))
+iris.target = numpy.hstack((iris.target, iris.target, iris.target, iris.target, iris.target))
+iris.target = numpy.hstack((iris.target, iris.target, iris.target, iris.target, iris.target))
+iris.target = numpy.hstack((iris.target, iris.target, iris.target, iris.target, iris.target))
+iris.target = numpy.hstack((iris.target, iris.target, iris.target, iris.target, iris.target))
 
 start = time.time()
 clf = RGFClassifier()
