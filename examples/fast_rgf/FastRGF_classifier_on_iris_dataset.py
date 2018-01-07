@@ -19,17 +19,23 @@ iris.target = numpy.hstack((iris.target, iris.target, iris.target, iris.target, 
 start = time.time()
 clf = RGFClassifier()
 clf.fit(iris.data, iris.target)
+end = time.time()
+print("RGF fit: {} sec".format(end - start))
+start = end
 score = clf.score(iris.data, iris.target)
 end = time.time()
-print("RGF: {} sec".format(end - start))
+print("RGF predict: {} sec".format(end - start))
 print("score: {}".format(score))
 
 start = time.time()
-clf = FastRGFClassifier()
+clf = FastRGFClassifier(n_estimators=1000)
 clf.fit(iris.data, iris.target)
+end = time.time()
+print("FastRGF fit: {} sec".format(end - start))
+start = end
 score = clf.score(iris.data, iris.target)
 end = time.time()
-print("FastRGF: {} sec".format(end - start))
+print("FastRGF predict: {} sec".format(end - start))
 print("score: {}".format(score))
 
 start = time.time()
